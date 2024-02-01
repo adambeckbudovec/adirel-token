@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract MiningToken {
+    mapping(address => uint256) public balances;
+    uint256 public totalSupply;
+    
+    // Difficulty for the simulated PoW
+    uint256 public difficulty = 2**252;
+
+    event Mined(address indexed miner, uint256 reward);
+
+    constructor(uint256 initialSupply) {
+        totalSupply = initialSupply;
+        balances[msg.sender] = initialSupply;
+    }
+
+    function mine() external {
+        // Simulated PoW
+        require(balances[msg.sender] > 0, "Insufficient balance for mining");
+
+        // Generate a random number (nonce)
+        uint256 nonce = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender)));
+
+        // Check the PoW difficulty
+        require(nonce < difficulty, "Mining unsuccessful");
+
+        // Reward the miner
+        uint256 reward = 1;
+        balances[msg.sender] += reward;
+        totalSupply += reward;
+
+        emit Mined(msg.sender, reward);
+    }
+
+    // Other standard ERC-20 functions can be added
+}
