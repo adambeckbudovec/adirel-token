@@ -4,8 +4,6 @@ The goal is to develop a token that is mineable that rewards miners for pooling 
 
 Rewarding participants for training AI models using blockchain-based tokens is an interesting concept and falls within the broader category of decentralized machine learning or AI on the blockchain. In this scenario, participants contribute computational resources, data, or algorithms to train and improve AI models, and they are rewarded with tokens for their contributions.
 
-Here's a simplified overview of how such a system might work:
-
 Components:
 Smart Contracts:
 
@@ -34,7 +32,7 @@ Token Distribution:
 Distribute tokens to participants based on the calculated rewards.
 Considerations:
 Quality Metrics:
-<details>
+More on Quanitative Metrics <details>
 
 Quantifying quality metrics in the context of AI contributions involves defining specific criteria and measurements to evaluate the performance, accuracy, and effectiveness of the contributed models or datasets. The choice of metrics depends on the nature of the AI task, and different domains may require different evaluation criteria. Below are some common quality metrics for various aspects of AI contributions:
 
@@ -101,18 +99,3 @@ Establish mechanisms for continuous feedback and improvement based on community 
 
 
 </details>
-
-Define clear metrics for assessing the quality and effectiveness of AI contributions. This could involve validation against benchmarks or real-world performance metrics.
-Privacy and Security:
-
-Implement measures to protect the privacy and security of participants' contributions, especially if sensitive data is involved.
-Incentive Mechanisms:
-
-Design incentive mechanisms that encourage honest participation and discourage malicious activities.
-Scalability:
-
-Consider the scalability of the system, especially if the AI models and datasets become large.
-Community Governance:
-
-Implement community governance mechanisms that allow participants to have a say in the rules and evolution of the decentralized AI platform.
-While this concept is intriguing, it's important to note that building such a system involves addressing various technical, ethical, and regulatory challenges. Additionally, real-world deployment would require collaboration with AI experts, developers, and the broader community to ensure the effectiveness and fairness of the incentive system.
