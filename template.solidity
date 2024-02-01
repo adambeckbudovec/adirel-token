@@ -1,0 +1,79 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract ERC20Token {
+    // Token metadata
+    string public name;
+    string public symbol;
+    uint8 public decimals;
+
+    // Total supply of tokens
+    uint256 private _totalSupply;
+
+    // Balances of token holders
+    mapping(address => uint256) private _balances;
+
+    // Allowances for spending tokens on behalf of others
+    mapping(address => mapping(address => uint256)) private _allowances;
+
+    // Events
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    // Constructor to initialize the token
+    constructor(string memory _name, string memory _symbol, uint8 _decimals, uint256 initialSupply) {
+        name = _name;
+        symbol = _symbol;
+        decimals = _decimals;
+        _totalSupply = initialSupply * (10 ** _decimals);
+        _balances[msg.sender] = _totalSupply;
+    }
+
+    // Function to get the total supply of tokens
+    function totalSupply() external view returns (uint256) {
+        return _totalSupply;
+    }
+
+    // Function to get the balance of a specific address
+    function balanceOf(address account) external view returns (uint256) {
+        return _balances[account];
+    }
+
+    // Function to transfer tokens to a recipient
+    function transfer(address to, uint256 value) external returns (bool) {
+        require(to != address(0), "Transfer to the zero address");
+        require(_balances[msg.sender] >= value, "Insufficient balance");
+
+        _balances[msg.sender] -= value;
+        _balances[to] += value;
+
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+
+    // Function to allow a spender to spend tokens on behalf of the owner
+    function approve(address spender, uint256 value) external returns (bool) {
+        _allowances[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        return true;
+    }
+
+    // Function to get the allowance of a spender for a specific owner
+    function allowance(address owner, address spender) external view returns (uint256) {
+        return _allowances[owner][spender];
+    }
+
+    // Function to transfer tokens on behalf of the owner
+    function transferFrom(address from, address to, uint256 value) external returns (bool) {
+        require(to != address(0), "Transfer to the zero address");
+        require(_balances[from] >= value, "Insufficient balance");
+        require(_allowances[from][msg.sender] >= value, "Insufficient allowance");
+
+        _balances[from] -= value;
+        _balances[to] += value;
+        _allowances[from][msg.sender] -= value;
+
+        emit Transfer(from, to, value);
+        return true;
+    }
+}
